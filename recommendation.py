@@ -14,12 +14,14 @@ def groupingStrategy(restaurant_user_df,group_members):
     
 def getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,top_n,user_id): #Business_df with file name
     
-    # Replace zero by 1 to give some importance and help multiplication
+    # Replace nan by 1 and 20 to give some importance and help multiplication
     restaurant_df = restaurant_df.replace(np.nan, 1)
-
-    # Replace zero by 20 to give some importance and help multiplication
     user_df = user_df.replace(np.nan,20)
     
+    # Replace 0 by 1 and 20 to give some importance and help multiplication
+    restaurant_df = restaurant_df.replace(0, 1)
+    user_df = user_df.replace(0,20)
+
     restaurant_df_matrix = restaurant_df.set_index('restaurant').values
     ## Add the user in the list who is looking for recommendation
     user_friends_list.append(user_id)
@@ -40,3 +42,14 @@ def getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,to
 
 user_friends_list = ['u0x3SXagjYDbI2N4sgJ0Tw','80MUDP_Ny_J8jeShVxzdlw','p8yQsVA51dzkc9cecDpvrw',"byro3oSQQ1gRESKlfiAqtQ"]
 print(getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,3,'k0d3Jnxulohu1HdJj1Hfkg'))
+
+
+from flask import Flask, render_template, request
+app = Flask(__name__)
+
+@app.rout
+
+
+if __name__ == '__main__':
+    app.run(debug = True)
+
