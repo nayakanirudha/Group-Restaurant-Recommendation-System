@@ -1,6 +1,7 @@
 import pandas as pd
 import random
 import numpy as np
+from tabulate import tabulate
 
 restaurant_df = pd.read_csv(r'./Datasets/restaurant_ratings_16052021_0.18.csv')
 user_df = pd.read_csv(r'./Datasets/user_weights_16052021_0.18.csv')
@@ -36,9 +37,8 @@ def getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,to
     final_df = groupingStrategy(new_df,selected_user['user'].values)
     final_df = final_df.sort_values(by='Total_Score',ascending= False)
     ## Return a list of Top N Restaurants 
-    top_id = final_df.index[:top_n]
-    
-    return restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]
+    top_id = final_df.index[:top_n] 
+    result = (restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]).values
 
 user_friends_list = ['u0x3SXagjYDbI2N4sgJ0Tw','80MUDP_Ny_J8jeShVxzdlw','p8yQsVA51dzkc9cecDpvrw',"byro3oSQQ1gRESKlfiAqtQ"]
 print(getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,3,'k0d3Jnxulohu1HdJj1Hfkg'))
@@ -47,9 +47,14 @@ print(getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-@app.rout
-
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug = True)
 
+# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+#    <link rel="stylesheet" href="style.css" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

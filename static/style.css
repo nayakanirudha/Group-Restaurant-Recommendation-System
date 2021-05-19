@@ -5,7 +5,7 @@
 .header{
     min-height: 100vh;
     width: 100%;
-    background-image: url(Images/buffet.jpg); /* background image of the webpage  */
+    background-image: url('buffet.jpg'); /* background image of the webpage  */
     background-position: center;
     background-size: cover;
     position: relative;

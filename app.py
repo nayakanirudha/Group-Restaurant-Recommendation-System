@@ -40,11 +40,11 @@ def getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,to
     ## Return a list of Top N Restaurants 
     top_id = final_df.index[:top_n]
     
-    return restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]
+    return (restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]).values
 
 
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
 
 @app.route('/')
 def home():
@@ -56,9 +56,9 @@ def predict():
     for x in request.form.values():
         temp_list.append(x)
     
-    y = getRecommendation(temp_list,restaurant_df,user_df,restaurant_name,3,'k0d3Jnxulohu1HdJj1Hfkg')
+    y = getRecommendation(temp_list,restaurant_df,user_df,restaurant_name,5,'k0d3Jnxulohu1HdJj1Hfkg')
     print(y)
-    return render_template('recommedation.html', prediction_text='Prediction $ {}'.format(y))
+    return render_template('recommedation.html', prediction_text= y)
 
 
 if __name__ == "__main__":

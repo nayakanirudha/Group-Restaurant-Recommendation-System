@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
@@ -8,23 +9,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recommendation System</title>
 </head>
-<body class="bg-info">
-    <div class="container" style="margin-top: 15px;">
-        <h1 class="text-center">List of Names for which get recommendation</h1>
-        <br>
-        <form action="/api" method="POST">
-            <select class="form-select" multiple aria-label="Select Any Number of Name" name="user_friends_list">
-                <option selected>Select Any Number of Name</option>
-                <option value="u0x3SXagjYDbI2N4sgJ0Tw">One</option>
-                <option value="80MUDP_Ny_J8jeShVxzdlw">Two</option>
-                <option value="p8yQsVA51dzkc9cecDpvrw">Three</option>
-                <option value="byro3oSQQ1gRESKlfiAqtQ">Four</option>
-            </select>
-            <br>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+<body style="background-image: url('/static/buffet.jpg');background-repeat: no-repeat;background-size: cover;">
+
+    <section id="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href=#>Navbar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About Project</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Our Team</a>
+                  </li>
+
+                </ul>
+              </div>
             </div>
-        </form>
-    </div>
+        </nav>
+    </section>
+
+    
+    <section class="header">
+        <div class="container" style="margin-top: 15px;">
+            <h1 class="text-center">List of Names for which get recommendation</h1>
+            <br>
+            <form action="/api" method="POST">
+                <select class="form-select" multiple aria-label="Select Any Number of Name" name="user_friends_list">
+                    <option value="u0x3SXagjYDbI2N4sgJ0Tw">Anirudha Nayak</option>
+                    <option value="80MUDP_Ny_J8jeShVxzdlw">Shreya Arora</option>
+                    <option value="p8yQsVA51dzkc9cecDpvrw">Shivani Nehra</option>
+                    <option value="byro3oSQQ1gRESKlfiAqtQ">Anirudh Sharma</option>
+                    <option value="e_YQl5LBR7Gdrp_1vdj1yQ">Tanvi Gawai</option>
+                    <option value="kZJWAY828P8QZTqVYzhTCg">Rajat Kumar</option>
+                    <option value='9JdlfwAdVY0DR5rPU_4WPQ'>Hema Rahate</option>
+                </select>
+                <br>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+                </div>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
