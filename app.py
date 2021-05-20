@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify, render_template
 
 import pandas as pd
-import random
 import numpy as np
 
 restaurant_df = pd.read_csv(r'./Datasets/restaurant_ratings_16052021_0.18.csv')
 user_df = pd.read_csv(r'./Datasets/user_weights_16052021_0.18.csv')
 restaurant_name = pd.read_csv(r'./Datasets/restaurant_name.csv')
+restaurant_address = pd.read_csv(r'./Datasets/restaurant_address.csv')
 
 def groupingStrategy(restaurant_user_df,group_members):
     restaurant_user_df['Total_Score'] = 1
@@ -14,7 +14,7 @@ def groupingStrategy(restaurant_user_df,group_members):
         restaurant_user_df['Total_Score'] = restaurant_user_df['Total_Score'].mul(restaurant_user_df[i])
     return restaurant_user_df
     
-def getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,top_n,user_id): #Business_df with file name
+def getRecommendation(user_friends_list, restaurant_df, user_df, restaurant_name, restaurant_address, top_n, user_id): #Business_df with file name
     
     # Replace nan by 1 and 20 to give some importance and help multiplication
     restaurant_df = restaurant_df.replace(np.nan, 1)
@@ -39,8 +39,17 @@ def getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,to
     final_df = final_df.sort_values(by='Total_Score',ascending= False)
     ## Return a list of Top N Restaurants 
     top_id = final_df.index[:top_n]
+<<<<<<< Updated upstream
     
     return restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]
+=======
+    names = (restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]).values
+    address = (restaurant_address.full_address.loc[restaurant_address['restaurant'].isin(top_id)]).values
+    return names, address
+
+user_friends_list = ['u0x3SXagjYDbI2N4sgJ0Tw','80MUDP_Ny_J8jeShVxzdlw','p8yQsVA51dzkc9cecDpvrw',"byro3oSQQ1gRESKlfiAqtQ"]
+print(getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,restaurant_address,5,'k0d3Jnxulohu1HdJj1Hfkg'))
+>>>>>>> Stashed changes
 
 
 
@@ -56,9 +65,14 @@ def predict():
     for x in request.form.values():
         temp_list.append(x)
     
+<<<<<<< Updated upstream
     y = getRecommendation(temp_list,restaurant_df,user_df,restaurant_name,3,'k0d3Jnxulohu1HdJj1Hfkg')
     print(y)
     return render_template('recommedation.html', prediction_text='Prediction $ {}'.format(y))
+=======
+    name, address = getRecommendation(temp_list,restaurant_df,user_df,restaurant_name,restaurant_address,5,'k0d3Jnxulohu1HdJj1Hfkg')
+    return render_template('recommedation.html', prediction_text= (name, address))
+>>>>>>> Stashed changes
 
 
 if __name__ == "__main__":

@@ -37,19 +37,31 @@ def getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,to
     final_df = final_df.sort_values(by='Total_Score',ascending= False)
     ## Return a list of Top N Restaurants 
     top_id = final_df.index[:top_n]
+<<<<<<< Updated upstream
     
     return restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]
+=======
+    x = (restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]).values
+    y = 2
+    return x,y
+>>>>>>> Stashed changes
 
 user_friends_list = ['u0x3SXagjYDbI2N4sgJ0Tw','80MUDP_Ny_J8jeShVxzdlw','p8yQsVA51dzkc9cecDpvrw',"byro3oSQQ1gRESKlfiAqtQ"]
-print(getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,3,'k0d3Jnxulohu1HdJj1Hfkg'))
+print(getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,3,'k0d3Jnxulohu1HdJj1Hfkg')[1])
 
 
-from flask import Flask, render_template, request
-app = Flask(__name__)
+# from flask import Flask, render_template, request
+# app = Flask(__name__)
 
+<<<<<<< Updated upstream
 @app.rout
 
+=======
+# @app.route('/')
+# def home():
+#     return render_template('home.html')
+>>>>>>> Stashed changes
 
-if __name__ == '__main__':
-    app.run(debug = True)
+# if __name__ == '__main__':
+#     app.run(debug = True)
 
