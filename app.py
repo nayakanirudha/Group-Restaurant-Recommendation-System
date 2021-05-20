@@ -39,17 +39,12 @@ def getRecommendation(user_friends_list, restaurant_df, user_df, restaurant_name
     final_df = final_df.sort_values(by='Total_Score',ascending= False)
     ## Return a list of Top N Restaurants 
     top_id = final_df.index[:top_n]
-<<<<<<< Updated upstream
-    
-    return restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]
-=======
     names = (restaurant_name.name.loc[restaurant_name['restaurant'].isin(top_id)]).values
     address = (restaurant_address.full_address.loc[restaurant_address['restaurant'].isin(top_id)]).values
     return names, address
 
 user_friends_list = ['u0x3SXagjYDbI2N4sgJ0Tw','80MUDP_Ny_J8jeShVxzdlw','p8yQsVA51dzkc9cecDpvrw',"byro3oSQQ1gRESKlfiAqtQ"]
 print(getRecommendation(user_friends_list,restaurant_df,user_df,restaurant_name,restaurant_address,5,'k0d3Jnxulohu1HdJj1Hfkg'))
->>>>>>> Stashed changes
 
 
 
@@ -65,14 +60,8 @@ def predict():
     for x in request.form.values():
         temp_list.append(x)
     
-<<<<<<< Updated upstream
-    y = getRecommendation(temp_list,restaurant_df,user_df,restaurant_name,3,'k0d3Jnxulohu1HdJj1Hfkg')
-    print(y)
-    return render_template('recommedation.html', prediction_text='Prediction $ {}'.format(y))
-=======
     name, address = getRecommendation(temp_list,restaurant_df,user_df,restaurant_name,restaurant_address,5,'k0d3Jnxulohu1HdJj1Hfkg')
     return render_template('recommedation.html', prediction_text= (name, address))
->>>>>>> Stashed changes
 
 
 if __name__ == "__main__":
